@@ -8,10 +8,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Learning Whole-body Loco-Manipulation for 6D Task Space Pose Tracking with Wheeled-Quadrupedal-Manipulator">
+        content="Learning Whole-Body Loco-Manipulation for Omni-Directional Task Space Pose Tracking with Wheeled-Quadrupedal-Manipulator">
   <meta name="keywords" content="loco-manipulator, wheeled quadraped, precise tracking, reward design">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Learning Whole-body Loco-Manipulation for 6D Task Space Pose Tracking with Wheeled-Quadrupedal-Manipulator</title>
+  <title>Learning Whole-Body Loco-Manipulation for Omni-Directional Task Space Pose Tracking with Wheeled-Quadrupedal-Manipulator</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -40,6 +40,44 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var mathElements = document.querySelectorAll('.math-inline');
+        mathElements.forEach(function(el) {
+            katex.render(el.textContent, el, {
+                throwOnError: false
+            });
+        });
+    });
+  </script>
+
+  <!-- Load MathJax -->
+  <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script> -->
+
+  <!-- Load KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script>
+
+  <style>
+    .keyword-container {
+      display: flex;
+      justify-content: space-around; /* 保持两列间有适当的空间 */
+      width: 80%;
+      margin: 0 auto; /* 居中容器 */
+    }
+    ul {
+        list-style-type: disc; /* 使用默认的圆点符号 */
+        padding-left: 20px; /* 设置适当的左边距以对齐列表 */
+        width: 40%; /* 控制每列的宽度 */
+    }
+    li {
+        margin-bottom: 10px; /* 列表项之间的间隔 */
+        text-align: left; /* 文本左对齐 */
+    }
+  </style>
 </head>
 
 <!-- TODO: html body
@@ -53,16 +91,19 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Learning Whole-body Loco-Manipulation for 6D Task Space Pose Tracking with Wheeled-Quadrupedal-Manipulator</h1>
+          <h1 class="title is-1 publication-title">Learning Whole-Body Loco-Manipulation for Omni-Directional Task Space Pose Tracking with Wheeled-Quadrupedal-Manipulator</h1>
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Kaiwen,</span>
-            <span class="author-block"><sup>1</sup>Zhen,</span>
-            <span class="author-block"><sup>1</sup>Junde,</span>
-            <span class="author-block"><sup>1</sup>Wei,</span>
-            <span class="author-block"><sup>1</sup>Hua,</span>
+            <span class="author-block"><sup>1</sup>Kaiwen Jiang,</span>
+            <span class="author-block"><sup>1</sup>Zhen Fu,</span>
+            <span class="author-block"><sup>1</sup>Junde Guo,</span>
+            <span class="author-block"><sup>1</sup>Zhefeng Cao,</span>
+            <span class="author-block"><sup>1</sup>Wei Zhang,</span>
+            <span class="author-block"><sup>1</sup>Hua Chen</span>
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Southern University of Science and Technology,</span>
+            <span class="author-block"><sup>1</sup>SUSTech Clear Lab,</span>
+            <span class="author-block"><sup>1</sup>LimX,</span>
+            <span class="author-block"><sup>1</sup>ZJUI</span>
           </div>
           <div class="column has-text-centered">
             <div class="publication-links">
@@ -80,7 +121,7 @@
               </span> -->
 
               <span class="link-block">
-                <a href=""
+                <a href="TODO"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -90,7 +131,7 @@
               </span>
               <!-- TODO: Video Link. -->
               <span class="link-block">
-                <a href=""
+                <a href="TODO"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
@@ -100,7 +141,7 @@
               </span>
               <!-- TODO: Code Link. -->
               <span class="link-block">
-                <a href=""
+                <a href="TODO"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -154,7 +195,7 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            <span class="dnerf">The WQM</span> consists of LimX W1, a wheeled quadruped with 16 actuators, and a 6-DOF arm, both powered by W1's battery. A single neural network is depolyed for loco-manipulation task. EE position is estimated using Radar Inertial Odometry (RIO) and forward kinematics.
+            <span class="dnerf">Our</span> Wheeled Quadrupedal Manipulator (WQM) platform combines the LimX W1, a 16-DOF wheeled quadruped, and a 6-DOF airbot arm. Both components are efficiently powered by the W1's battery system. The platform utilizes a unified control policy, meticulously trained and deployed to achieve precise omni-directional task space pose tracking. The positioning of the end-effector is precisely estimated through a combination of Radar Inertial Odometry (RIO) and forward kinematics. The configuration of the platform is illustrated in the accompanying figure.
           </p>
         </div>
         <img src="./static/images/wlm_description.png"
@@ -172,14 +213,14 @@
 -->
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-3">Experiments</h2>
     <div class="columns is-centered">
-
     <div class="column">
       <div class="content">
-        <h2 class="title is-3">Whole-body 6-D Tracking</h2>
+        <h3 class="title is-4">Whole-body 6-D Tracking</h3>
         <p>
-          The <i>WLM</i> is able to track different 6-D pose with whole-body feature and handle long distance locomotion task.
+          Our <i>WQM</i> platform can track various 6-D poses with whole-body feature and handle long distance locomotion task.
         </p>
         <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
           <source src="./static/videos/M_outdoor.mp4"
@@ -189,11 +230,11 @@
     </div>
 
     <div class="column">
-      <h2 class="title is-3">Enter an elevator</h2>
+      <h3 class="title is-4">Enter an elevator</h3>
       <div class="columns is-centered">
         <div class="column content">
           <p>
-            The <i>WLM</i> is able to push a small button and enter an elevator smoothly, demonstrating its application potential.
+            Our <i>WQM</i> platform can precisely push a small button and enter an elevator smoothly.
           </p>
           <video id="matting-video" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/M_enter_elevator.mp4"
@@ -210,9 +251,9 @@
 
       <div class="column">
         <div class="content">
-          <h2 class="title is-3">Pick up cups</h2>
+          <h3 class="title is-4">Pick up cups</h3>
           <p>
-            The <i>WLM</i> is able to handle delicate movement as shown in the video, picking up cups and throw them to a bin together.
+            Our <i>WQM</i> platform can handle delicate operations, like picking up cups and throw them into a bin together.
           </p>
           <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/M_picking_cups.mp4"
@@ -222,11 +263,11 @@
       </div>
   
       <div class="column">
-        <h2 class="title is-3">Write on a white-board</h2>
+        <h3 class="title is-4">Write on a white-board</h3>
         <div class="columns is-centered">
           <div class="column content">
             <p>
-              The <i>WLM</i> is able to draw on a white-board, like writing "SUSTech", "ZJUI", "LimX", or ploting a circle.
+              Our <i>WQM</i> platform can write and draw on a white-board, like writing "SUSTech", "ZJUI", "LimX", or ploting a circle.
             </p>
             <video id="matting-video" autoplay controls muted loop playsinline height="100%">
               <source src="./static/videos/M_writing.mp4"
@@ -248,11 +289,17 @@
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <div class="column">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            <span class="dnerf">In modern work environments</span>, robots are required to perform tasks that demand high-precision 6D tracking tasks and versatile mobility. Wheeled Quadruped Manipulators (WQM) are particularly adept at meeting these demands, which expand their operational workspace with their legs and increase motion efficiency with their wheels, enabling both adaptive and effective movement. Loco-manipulation tasks needs the coordination between floating base and manipulator to fully exploit the capacity of the hardware. In this paper, we study the problem of loco-manipulation with the Wheeled Quadruped Manipulator (WQM) hardware. Our objective is to train a novel unified whole-body policy, which needs only 6D end-efector(EE) target commands from users. And our policy satisfies precise 6D EE pose tracking with safe and continuous locomotion. This policy autonomously transitions between locomotion and manipulation as needed. To fulfill this, a new reinforcement learning (RL) structure, named the Reward Fusion Module (RFM), is proposed. RFM can establish priority between tasks, switch modes between locomotion and manipulation, do the reward enhancement, and conduct cumulative penalty to achieve precise tracking. Finally, we initiatively bridge the gap of sim2real, and deploy our methods on the WQM platform both in simulation and reality to validate the feasibility and efficiency. The experiments demonstrate a smooth and precise tracking performance, and seamless switch between wheeled and legged to fully exploit efficiency. 
+            <span class="dnerf">In this paper</span>, we study whole-body loco-manipulation problem with a Wheeled Quadrupedal Manipulator (WQM) platform. Such a problem focuses on how to coordinate the mobile floating base and the robotic arm to achieve fully six-dimensional task space end-effector pose tracking.
+
+            To address such a problem, we leverage the reinforcement learning method and develop an end-to-end policy that unifies the treatment of locomotion and manipulation. Such a unification requires handling different objectives associated with the locomotion and manipulation tasks, which are typically encoded via different reward design in reinforcement learning paradigms.
+
+            To this end, we develop a novel Reward Fusion Module (RFM) structure, which is a systematic scheme to integrate different task rewards and achieve balance among them. In the whole-body loco-manipulation problem, Our proposed RFM is adopted to coordinate various individual rewards and better balance the relationship between them, thus ultimately achieving accurate and smooth loco-manipulation.
+
+            For the first time, we successfully bridge the sim2real gap of WQM, and deploy our methods on the WQM platform both in simulation and reality to validate the feasibility and efficiency. The experiments demonstrate smooth and precise tracking performance, achieving state-of-the-art tracking position error of less than 5 cm, and rotation error of less than 0.1 rad, and a seamless transition between wheeled and legged modes to fully exploit efficiency.
           </p>
         </div>
       </div>
@@ -268,19 +315,31 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered has-text-centered"> 
       <div class="column">
         <h2 class="title is-3">Framework</h2>
         <div class="content has-text-justified">
           <p>
-            In this paper, we use reinforcement learning to tackle whole-body loco-manipulation with the WQM platform, aiming to track a six-dimensional EE target with a single policy. As shown in the figure, our control architecture features a unified RL policy that takes long-short history observations and 6D EE commands as input. A student encoder processes the long history observations. The policy output is sent to a PD controller.
+            The following figure shows the training paradigm for our whole-body policy. The rewards integrated by the Reward Fusion Module generate a reasonable return. With an approximated value function, the Generalized Advantage Estimator computes the advantage for the PPO algorithm update. The unified policy takes the 6D target pose <span class="math-inline">(R,p)</span> from the user, latent <span class="math-inline">\hat{z}</span> encoded from the privilege encoder, and proprioceptive states.
           </p>
         </div>
         <img src="./static/images/main_fig.png"
                  class="interpolation-image"
                  alt="Interpolate start reference image."
                  width="1500"/>
-        <p>Control Framework</p>
+        <!-- <div class="keyword-container">
+        <ul>
+            <li>Enhance the tracking-related reward</li>
+            <li>Establish task prioritization</li>
+            <li>Achieve smooth loco-manipulation fusion</li>
+        </ul>
+        <ul>
+            <li>Trained with teacher-student structure</li>
+            <li>One unified whole-body policy</li>
+            <li>Long-short history observation</li>
+            <li>Only 6-dimension EE target command</li>
+        </ul>
+        </div> -->
       </div>
     </div>
   </div>
@@ -295,28 +354,33 @@
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Ablation</h2>
-        <div class="content has-text-justified">
-          <p>
-            We do ablation study for our main contribution.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="100%">
-            <source src="./static/videos/ablation.mp4"
-                    type="video/mp4">
-          </video>
+      <div class="column">
+        <h2 class="title is-3">Simulation</h2>
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <h3 class="title is-4">Isaac Gym Training</h3>
+            <p>
+              Our <i>WQM</i> platform can track various 6-D poses with whole-body feature and handle long distance locomotion tasks.
+            </p>
+            <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+              <source src="./static/videos/M_outdoor.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column is-half">
+            <h3 class="title is-4">Ablation Study</h3>
+            <p>
+              Our <i>WQM</i> platform can precisely push a small button and enter an elevator smoothly.
+            </p>
+            <video id="matting-video" autoplay controls muted loop playsinline width="100%">
+              <source src="./static/videos/ablation.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- TODO: Experiment -->
 <!-- 
@@ -324,7 +388,7 @@
 2. ...
 -->
 
-<section class="section">
+<!-- <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -348,7 +412,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- TODO: BibTeX -->
 
